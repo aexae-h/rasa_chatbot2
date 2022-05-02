@@ -28,7 +28,7 @@ nlu:
 #--------------------------------------
 
 
-# Intents basic -----------------------
+# Intents basics -----------------------
 - intent: greet
   examples: |
     - hey 
