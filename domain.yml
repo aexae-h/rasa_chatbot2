@@ -1,0 +1,102 @@
+version: "2.0"
+
+
+TODO:::::
+intents aktualisiern
+
+intents:
+  - greet
+  - affirm
+  - deny
+  - bye
+  - chitchat
+  - consult_exemption_pregnancy
+  - search_kiga
+  - info_profession
+  - info_university
+  - info_profession
+  - info_kigaplace
+
+entities:
+- kigaplace
+- university
+- profession
+
+slots:
+  kigaplace:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: kigaplace
+  university:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: university
+  profession:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: profession
+
+forms:
+  consult_pregnancy_form:
+    required_slots:
+      - profession
+  consult_kiga_form:
+    required_slots:
+      - kigaplace
+      - university
+
+responses:
+  utter_greet:
+  - text: "Hallo :) Darf ich dieses Gespräch zur Verbesserung des Services aufzeichnen?"
+
+  utter_privacy:
+  - text: "Wie kann ich dir weiterhelfen?"
+
+  utter_chitchat/ask_protection_dismissal_pregnancy:
+  - text: "Vom Beginn der Schwangerschaft bis zum Ablauf von vier Monaten nach der Entbindung, ist die Kündigung des Arbeitsverhältnisses durch das Unternehmen / Hochschule unzulässig."
+
+  utter_chitchat/ask_obligation_to_notify:
+  - text: "Damit die Hochschule Augsburg alle notwendigen Mutterschutzbestimmungen einhalten kann, sollen werdende Mütter ihre Schwangerschaft und den mutmaßlichen Tag der Entbindung mitteilen, sobald Ihnen der Umstand bekannt ist (§ 5 MuSchG)."
+
+
+
+  # Happy Path: Freistellung bei Schwangerschaft
+  utter_ask_profession:
+  - text: "Super. Bist du eine Studentin oder eine Mitarbeiterin?"
+
+  utter_pregnant_answer1a:
+  - text: "Alles klar, du bist also eine {profession} an der {place}. Hier sind die wichtigsten Daten im Überblick."
+
+  utter_pregnant_answer1b:
+  - text: "Falls du dir weitere Informationen wünscht, ist hier ein Link... und der Ansprechpartner zum Thema Schwangerschaft ist ..."
+  # -----------
+
+
+
+
+  # Happy Path: Betreuungsmöglichkeiten
+  utter_ask_kigaplace:
+  - text: "Möchtest du einen Kindergarten in der Nähe deines Zuhauses oder nahe am Arbeitsplatz?"
+
+  utter_ask_place:
+  - text: "Super, also an der {kigaplace}, wo arbeitest du?"
+
+  utter_kiga_answer:
+  - text: "Alles klar. Folgende Kindergärten habe ich in der Umgebung von {place} gefunden...."
+  # -----------
+
+
+
+  utter_askagain:
+  - text: "Hast du noch weitere Fragen?"
+
+  utter_bye:
+  - text: "Schönen Tag noch!"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

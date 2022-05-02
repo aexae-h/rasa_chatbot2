@@ -1,0 +1,102 @@
+version: "2.0"
+
+rules:
+
+# Start vom Gespräch, wird nur 1x verwendet wg. conv_start: true
+- rule: greet and ask the user for privacy positiv
+  conversation_start: true
+  steps: 
+  - intent: greet
+  - action: utter_greet
+
+# Handling form rule of Consulting Pregnancy -------------
+
+# activate form
+- rule: activate consult pregnancy form
+  steps:
+  - intent: consult_exemption_pregnancy
+  - action: consult_pregnancy_form
+  - active_loop: consult_pregnancy_form
+
+# deactivate form
+- rule: deactivate consult pregnancy form
+  condition:
+  # Condition that form is active.
+  - active_loop: consult_pregnancy_form
+  steps:
+  # Form is deactivated
+  - action: consult_pregnancy_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_pregnant_answer1a
+  - action: utter_pregnant_answer1b
+  - action: utter_askagain
+
+  # handle chitchat while in form
+- rule: handle_chitchat consult pregnancy form
+  condition:
+  # Condition that form is active.
+  - active_loop: consult_pregnancy_form
+  steps:
+  # This unhappy path handles the case of an intent `chitchat`.
+  - intent: chitchat
+  - action: utter_chitchat
+  # Return to form after handling the `chitchat` intent
+  - action: consult_pregnancy_form
+  - active_loop: consult_pregnancy_form
+
+  # ------------------------------
+
+# Handling form rule of Searching Kiga -------------
+
+# activate form
+- rule: activate form search kiga
+  steps:
+  - intent: search_kiga
+  - action: consult_kiga_form
+  - active_loop: consult_kiga_form
+
+# deactivate form
+- rule: deactivate form search kiga
+  condition:
+  # Condition that form is active.
+  - active_loop: consult_kiga_form
+  steps:
+  # Form is deactivated
+  - action: consult_kiga_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+  - action: utter_kiga_answer
+  - action: utter_askagain
+
+  # handle chitchat while in form
+- rule: handle chitchat search kiga form
+  condition:
+  # Condition that form is active.
+  - active_loop: consult_kiga_form
+  steps:
+  # This unhappy path handles the case of an intent `chitchat`.
+  - intent: chitchat
+  - action: utter_chitchat
+  # Return to form after handling the `chitchat` intent
+  - action: consult_kiga_form
+  - active_loop: consult_kiga_form
+
+# ------------------------------
+
+
+# handle chitchat
+- rule: respond to chitchat
+  steps:
+  - intent: chitchat
+  - action: utter_chitchat
+
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: bye
+  - action: utter_bye

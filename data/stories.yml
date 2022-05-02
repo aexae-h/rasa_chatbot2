@@ -1,0 +1,28 @@
+version: "2.0"
+
+stories:
+
+- story: affirm privacy
+  steps:
+  - intent: affirm
+  - action: utter_privacy
+
+- story: deny privacy
+  steps:
+  - intent: deny
+  - action: utter_bye
+
+  # user has no more questions | Handle end
+- story: no_additonal_questions
+  steps:
+  - checkpoint: check_question
+  - action: utter_askagain
+  - intent: deny
+  - action: utter_bye
+
+# user has one more question | Handle +1 question
+- story: yes_additonal_questions
+  steps:
+  - checkpoint: check_question
+  - action: utter_askagain
+  - intent: affirm

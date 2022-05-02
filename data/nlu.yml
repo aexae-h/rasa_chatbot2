@@ -1,0 +1,159 @@
+version: "2.0"
+
+nlu:
+
+# Synonyms ----------------------------
+- synonym: HSA
+  examples: |
+    - Hochschule Augsburg
+    - Hochschule
+    - HS Augsburg
+    - HS A
+    - HS Aux
+    - Hochschule Aux
+    - Hochschule in Augsburg
+
+- synonym: Mitarbeiterin
+  examples: |
+    - Mitarbeiterin
+    - Professorin
+    - arbeite
+    - angestellt
+
+- synonym: Studentin
+  examples: |
+    - Studentin
+    - Studi
+    - studiere
+#--------------------------------------
+
+
+# Intents basic -----------------------
+- intent: greet
+  examples: |
+    - hey 
+    - hi
+    - guten morgen
+    - guten tag
+    - guten abend
+    - servus
+ 
+- intent: affirm
+  examples: |
+    - ja
+    - ja kein problem
+    - ja schon
+    - jo
+    - joa
+    - jep
+    - jip
+    - klar
+
+- intent: deny
+  examples: |
+    - nein
+    - nein sorry
+    - nope
+    - nö
+    - nix gibts
+    - ne man
+    - nein leider nicht
+
+- intent: bye
+  examples: |
+    - Tschüss
+    - Bye
+    - Tschau
+    - Hadelan
+    - Hadebye
+    - Hade
+    - Servus
+    - Pfirdi
+
+- intent: chitchat/ask_protection_dismissal_pregnancy
+  examples: |
+    - Wie lange geht der Kündigungsschtuz in der Schwangerschaft
+    - Bis wann habe ich Kündigungsschutz in der Schwangerschaft.
+    - Ich bin schwanger. Wie lange ist Kündigsschutz.
+    - Kündigungsschutz Schwangerschaft
+    - Wie lange kann ich nicht gekündigt werden bei Schwangerschaft
+    - Wie lange Kündigungsschutz in Schwangerschaft
+
+- intent: chitchat/ask_obligation_to_notify
+  examples: |
+    - Muss ich mich melden wenn ich schwanger bin?
+    - Wann muss ich mich melden wenn ich schwanger bin?
+    - Bin ich verpflichtet mich zu melden bei Schwangerschaft?
+    - Bis wann muss ich mich melden bei Schwangerschaft?
+    - Meldepflicht bei Schwangerschaft.
+    - Schwangerschaft und Meldepflicht.
+
+
+#--------------------------------------
+
+
+# Intents forms -----------------------
+- intent: consult_exemption_pregnancy
+  examples: |
+    - Ich möchte mich zum Thema Freistellung bei Schwangerschaft informieren.
+    - Ich möchte mich zum Thema Freistellung in der Schwangerschaft informieren.
+    - Welche Möglichkeiten habe ich in der Schwangerschaft?
+    - Wie kann ich mich bei Schwangerschaft freistellen lassen?
+    - Freistellung Schwangerschaft
+    - Schwangerschaft Freistellung
+    - Ich will freigestellt werden, wenn ich schwanger bin.
+
+- intent: search_kiga
+  examples: |
+    - Ich suche einen Kindergarten für mein Kind.
+    - Ich brauch einen Kindergarten in meiner Nähe.
+    - Mein Kind braucht einen Kindergarten.
+    - Wo gibt es in meiner Nähe einen Kindergarten?
+    - Kindergarten für mein Kind
+
+- intent: info_profession_university
+  examples: |
+    - [Mitarbeiterin](profession) an der [Hochschule Augsburg](university)
+    - [Professorin](profession) an der [HSA](university)
+    - Ich [arbeite](profession) an der [Hochschule Augsburg](university)
+    - Ich [arbeite](profession) an der [HSA](university)
+    - [Mitarbeiterin](profession) an der [HSA](university)
+    - Ich bin [Studentin](profession) an der [HSA](university)
+    - Ich bin [Studentin](profession) an der [Hochschule Augsburg](university)
+    - Ich [studiere](profession) an der [HSA](university)
+
+- intent: info_profession/work
+  examples: |
+    - [Mitarbeiterin](profession)
+    - [Professorin](profession)
+    - Ich bin [Mitarbeiterin](profession)
+    - Ich bin [Professorin](profession)
+    - Ich [arbeite](profession)
+    - ich bin [angestellt](profession)
+
+- intent: info_profession/study
+  examples: |
+    - [Studentin](profession)
+    - [Student](profession)
+    - Ich bin [Studentin](profession)
+    - Ich bin [Student](profession)
+    - Ich [studiere](profession)
+
+- intent: info_university
+  examples: |
+    - An der [HSA](university)
+    - Bei der [HS Augsburg](university)
+    - Bei der [Hochschule](university)
+    - HS Augsburg
+    - Hoschule Augsburg
+
+- intent: info_place_kiga
+  examples: |
+    - Nahe an der [Arbeit](kigaplace)
+    - An der [Arbeit](kigaplace)
+    - Bei der [Arbeit](kigaplace)
+    - Wenn möglich nahe an der [Arbeit](kigaplace)
+    - [Arbeit](kigaplace) wäre super
+    - In der Umgebung meiner [Arbeit](kigaplace)
+
+#--------------------------------------
